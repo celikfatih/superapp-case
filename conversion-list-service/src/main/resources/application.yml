@@ -1,0 +1,24 @@
+server:
+  port: 8084
+  error:
+    include-binding-errors: never
+    include-stacktrace: never
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: conversion-list-service
+  jpa:
+    open-in-view: false
+  datasource:
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+
+springdoc:
+  swagger-ui:
+    path: swagger.html

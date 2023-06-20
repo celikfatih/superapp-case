@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+  db:
+    image: 'postgres:14.5-alpine'
+    container_name: db
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./db-init.sql:/docker-entrypoint-initdb.d/db-init.sql
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    networks:
+      - exchange-network
+  
+  exchange-rate-service:
+    build:
+      context: exchange-rate-service/
+      dockerfile: Dockerfile
+    container_name: exchang-rate-service
+    ports:
+      - '8082:8082'
+    restart: on-failure
+    environment:
+      - CURRENCY_BASE_URL=${CURRENCY_BASE_URL}
+      - CURRENCY_API_KEY=${CURRENCY_API_KEY}
+    networks:
+      - exchange-network
+  
+  conversion-service:
+    build:
+      context: conversion-service/
+      dockerfile: Dockerfile
+    container_name: conversion-service
+    ports:
+      - '8083:8083'
+    restart: on-failure
+    environment:
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      - EXCHANGE_RATE_SERVICE_URL=${EXCHANGE_RATE_SERVICE_URL}
+    networks:
+      - exchange-network
+
+  conversion-list-service:
+    build:
+      context: conversion-list-service/
+      dockerfile: Dockerfile
+    container_name: conversion-list-service
+    ports:
+      - '8084:8084'
+    restart: on-failure
+    environment:
+      - SPRING_DATASOURCE_URL=${DB_URL}
+      - SPRING_DATASOURCE_USERNAME=${DB_USER}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    networks:
+      - exchange-network
+
+networks:
+  exchange-network:
+    name: exchange-network

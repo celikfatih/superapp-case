@@ -1,0 +1,21 @@
+server:
+  port: 8082
+  error:
+    include-binding-errors: never
+    include-stacktrace: never
+
+currency:
+  base:
+    url: ${CURRENCY_BASE_URL}
+  api:
+    key: ${CURRENCY_API_KEY}
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: exchange-rate-service
+
+springdoc:
+  swagger-ui:
+    path: swagger.html
