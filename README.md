@@ -56,6 +56,15 @@ address can be used to access APIs and documentation:
     ```
     http://localhost:8084/swagger.html
     ```
+## Coverage Report
+Go to the microservice path where you want to see Coverage. Then build the project. The Jacoco report will be generated 
+at the end of the Build step.
+
+```./gradlew build```
+
+After the successful build step, go to the following path and open the `index.html` file any browser as well.
+
+```{projectDir}/build/reports/jacoco/index.html```
 
 ## Contact
 

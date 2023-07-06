@@ -5,7 +5,7 @@ LABEL maintaner="Fatih Celik <celikfatih@protonmail.com>"
 
 WORKDIR /opt/app
 COPY . .
-RUN gradle build -x test
+RUN gradle build
 
 FROM --platform=linux/x86_64 eclipse-temurin:17-jdk-alpine
 

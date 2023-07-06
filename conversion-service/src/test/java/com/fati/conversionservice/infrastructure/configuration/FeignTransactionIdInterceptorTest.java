@@ -6,6 +6,8 @@ import org.slf4j.MDC;
 
 import java.util.Collections;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class FeignTransactionIdInterceptorTest {
 
     private static final String TRX_ID_HEADER_NAME = "X-Transaction-Id";
