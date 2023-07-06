@@ -50,8 +50,6 @@ class CurrencyApiInvocationAdapterTest {
     void testInvokeWhenExternalApiCallFailShouldReturnExternalApiInvocationException() {
         String from = "EUR";
         String to = "XTR";
-        LinkedHashMap<String, CurrencyApiInvocationAdapter.ExternalApiResponse.ExchangeValue> map = new LinkedHashMap<>();
-        map.put(to, new CurrencyApiInvocationAdapter.ExternalApiResponse.ExchangeValue(to, BigDecimal.TEN));
 
         when(webClient.get()).thenThrow(new RuntimeException("test"));
 
