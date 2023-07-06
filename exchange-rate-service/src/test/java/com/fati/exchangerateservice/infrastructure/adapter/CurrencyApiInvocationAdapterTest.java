@@ -52,8 +52,6 @@ class CurrencyApiInvocationAdapterTest {
         String to = "XTR";
         LinkedHashMap<String, CurrencyApiInvocationAdapter.ExternalApiResponse.ExchangeValue> map = new LinkedHashMap<>();
         map.put(to, new CurrencyApiInvocationAdapter.ExternalApiResponse.ExchangeValue(to, BigDecimal.TEN));
-        CurrencyApiInvocationAdapter.ExternalApiResponse response =
-                new CurrencyApiInvocationAdapter.ExternalApiResponse(map);
 
         when(webClient.get()).thenThrow(new RuntimeException("test"));
 

@@ -3,8 +3,6 @@ package com.fati.conversionlistservice.infrastructure.configuration;
 import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mock.web.MockFilterChain;
@@ -30,9 +28,6 @@ class TransactionIdFilterTest {
 
     @Mock
     private MockFilterChain filterChain;
-
-    @Captor
-    private ArgumentCaptor<String> transactionIdCaptor;
 
     private final TransactionIdFilter transactionIdFilter = new TransactionIdFilter();
 

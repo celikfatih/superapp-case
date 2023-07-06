@@ -54,7 +54,6 @@ class ExchangeRateServiceAdapterTest {
     @Test
     void testInvokeWhenApiResponseErrorStatusShouldThrowInternalApiCallException() {
         String from = "USD";
-        String to = "TRY";
 
         when(exchangeRateServiceClient.getExchangeRate(any(ExchangeRateRequest.class)))
                 .thenReturn(ResponseEntity.internalServerError().build());

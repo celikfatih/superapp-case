@@ -14,8 +14,6 @@ class CurrencyApiConfigurationTest {
 
     @Test
     void currencyApiWebClient() {
-        contextRunner.run(ctx -> {
-            assertThat(ctx).hasSingleBean(CurrencyApiConfiguration.class);
-        });
+        contextRunner.run(ctx -> assertThat(ctx).hasSingleBean(CurrencyApiConfiguration.class));
     }
 }
